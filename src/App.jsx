@@ -537,53 +537,61 @@ function App() {
 
   return (
     <div className="wrap">
+      <div className="playArea">
+        <GameOverlay
+          visible={waitingClick}
+          message={waitingMessage}
+          onProceed={proceedAfterEnemyGuts}
+        />
+
+        <div className="playColumns">
+          <GameBoard
+            phase={phase}
+            turnOwner={turnOwner}
+            enemies={enemies}
+            allies={allies}
+            enemyHandCount={enemyHand.length}
+            playerHand={playerHand}
+            selectedCardIdx={selectedCardIdx}
+            actorIdx={actorIdx}
+            targetIdx={targetIdx}
+            hoverPreview={hoverPreview}
+            onEnemyClick={handleEnemyClick}
+            onEnemyHover={handleEnemyHover}
+            onEnemyLeave={handleEnemyLeave}
+            onAllyClick={handleAllyClick}
+            onPlayerCardClick={handlePlayerCardClick}
+            onToggleGutsSelect={toggleGutsSelect}
+            gutsSelect={gutsSelect}
+            enemyRevealedDefense={enemyRevealedDefense}
+            enemyRevealedAttack={enemyRevealedAttack}
+            playerRevealedDefense={playerRevealedDefense}
+            onPlayerDefendNone={playerDefendNone}
+            onPlayerDefendUse={playerDefendUse}
+            onEndTurn={endTurn}
+            onActionEnd={handleActionEnd}
+            hpPct={hpPct}
+            isUnitAllowed={isUnitAllowed}
+            speciesToIcon={speciesToIcon}
+          />
+
+          <HudColumn
+            enemyG={enemyG}
+            enemyDeckCount={deckCounts.enemy}
+            playerG={playerG}
+            playerDeckCount={deckCounts.player}
+            turnCount={turnCount}
+            turnOwner={turnOwner}
+            phase={phase}
+          />
+        </div>
+      </div>
+
       <LogPanel
         logs={logs}
         showDetails={showDetails}
         onToggleDetails={() => setShowDetails((prev) => !prev)}
         conciseLogs={conciseLogs}
-      />
-
-      <GameOverlay visible={waitingClick} message={waitingMessage} onProceed={proceedAfterEnemyGuts} />
-
-      <GameBoard
-        phase={phase}
-        turnOwner={turnOwner}
-        enemies={enemies}
-        allies={allies}
-        enemyHandCount={enemyHand.length}
-        playerHand={playerHand}
-        selectedCardIdx={selectedCardIdx}
-        actorIdx={actorIdx}
-        targetIdx={targetIdx}
-        hoverPreview={hoverPreview}
-        onEnemyClick={handleEnemyClick}
-        onEnemyHover={handleEnemyHover}
-        onEnemyLeave={handleEnemyLeave}
-        onAllyClick={handleAllyClick}
-        onPlayerCardClick={handlePlayerCardClick}
-        onToggleGutsSelect={toggleGutsSelect}
-        gutsSelect={gutsSelect}
-        enemyRevealedDefense={enemyRevealedDefense}
-        enemyRevealedAttack={enemyRevealedAttack}
-        playerRevealedDefense={playerRevealedDefense}
-        onPlayerDefendNone={playerDefendNone}
-        onPlayerDefendUse={playerDefendUse}
-        onEndTurn={endTurn}
-        onActionEnd={handleActionEnd}
-        hpPct={hpPct}
-        isUnitAllowed={isUnitAllowed}
-        speciesToIcon={speciesToIcon}
-      />
-
-      <HudColumn
-        enemyG={enemyG}
-        enemyDeckCount={deckCounts.enemy}
-        playerG={playerG}
-        playerDeckCount={deckCounts.player}
-        turnCount={turnCount}
-        turnOwner={turnOwner}
-        phase={phase}
       />
     </div>
   );

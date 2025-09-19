@@ -9,9 +9,9 @@ function LogPanel({ logs, showDetails, onToggleDetails, conciseLogs }) {
           {showDetails ? "詳細ログを閉じる" : "詳細ログを開く"}
         </button>
       </div>
-      <div className="logRow">
+      <div className="logList">
         {conciseLogs.map((text, index) => (
-          <div className="logItem" key={index}>
+          <div className="logListItem" key={index}>
             {text}
           </div>
         ))}
